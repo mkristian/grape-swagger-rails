@@ -32,6 +32,12 @@ module GrapeSwaggerRails
     before_filter_proc:     nil, # Proc used as a controller before filter
 
     hide_url_input:         false,
-    hide_api_key_input:     false
+    hide_api_key_input:     false,
+
+    oauth_client_id:        'your-client-id',
+    oauth_client_secret:    'your-client-secret-if-required',
+    oauth_realm:            'your-realms', # some OAuth providers needs this
+    oauth_scope_separator:  ' ',
+    oauth_redirect_uri:     'your-oauth-redirect-uri'
   )
 end

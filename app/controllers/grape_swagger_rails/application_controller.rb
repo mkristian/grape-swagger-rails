@@ -8,5 +8,8 @@ module GrapeSwaggerRails
 
     def index
     end
+
+    def o2c
+    end
   end
 end

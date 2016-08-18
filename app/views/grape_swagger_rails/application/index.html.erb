@@ -15,6 +15,7 @@
       <%=raw "headers.header_#{index} = new SwaggerClient.ApiKeyAuthorization('#{CGI.escapeHTML(key)}', '#{CGI.escapeHTML(value)}', 'header');" %>
     <% end %>
 
+    window.oAuthRedirectUrl = options.oauth_redirect_uri
     window.swaggerUi = new SwaggerUi({
       url: options.app_url + options.url,
       dom_id: "swagger-ui-container",
@@ -22,6 +23,16 @@
       supportedSubmitMethods: options.supported_submit_methods || [],
       authorizations: headers,
       onComplete: function(swaggerApi, swaggerUi){
+        if(typeof initOAuth == "function") {
+          initOAuth({
+            clientId: options.oauth_client_id,
+            clientSecret: options.oauth_client_secret,
+            realm: options.oauth_realm,
+            appName: options.app_oauth_name,
+            scopeSeparator: options.oauth_scope_separator,
+            additionalQueryStringParams: {}
+          });
+        }
         if('console' in window) {
           console.log("Loaded SwaggerUI")
           console.log(swaggerApi);
